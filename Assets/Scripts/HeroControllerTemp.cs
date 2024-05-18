@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroController : MonoBehaviour
+public class HeroControllerTemp : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
@@ -10,9 +10,12 @@ public class HeroController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float horizontalMove;
 
+    private Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -39,5 +42,6 @@ public class HeroController : MonoBehaviour
     {
         Vector2 movement = new Vector2(move * moveSpeed, rb.velocity.y);
         rb.velocity = movement;
+        animator.SetBool("isRunning", move != 0);
     }
 }
